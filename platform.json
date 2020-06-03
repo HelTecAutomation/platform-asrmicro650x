@@ -1,0 +1,45 @@
+{
+  "name": "asrmicro650x",
+  "title": "ASR Microelectronics ASR605x",
+  "description": "ASR Microelectronics ASR605x series is highly intergrated and ultra low power SOC based on the PSoC 4000 series MCU (ARM Cortex M0+ Core) and Semtech SX1262 transceiver.",
+  "url": "http://www.asrmicro.com",
+  "homepage": "https://platformio.org/platforms/asrmicro650x",
+  "license": "Apache-2.0",
+  "engines": {
+    "platformio": "<5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HelTecAutomation/platform-asrmicro650x"
+  },
+  "version": "0.0.0",
+  "packageRepositories": [
+  	"https://dl.bintray.com/platformio/dl-packages/manifest.json",
+  	"http://dl.platformio.org/packages/manifest.json"
+  ],
+  "frameworks": {
+    "arduino": {
+      "package": "framework-arduinoasrmicro650x",
+      "script": "builder/frameworks/arduino.py"
+    }
+  },
+  "packages": {
+    "toolchain-gccarmnoneeabi": {
+      "type": "toolchain",
+      "version": "~1.90201.0"
+    },
+    "framework-arduinoasrmicro650x": {
+      "type": "framework",
+      "version": "~1.0.0",
+      "optional": true
+    },
+    "tool-cubecellelftool": {
+      "version": "~0.0.1"
+    },
+    "tool-cubecellflash": {
+      "type": "uploader",
+      "optional": true,
+      "version": "~0.0.1"
+    }
+  }
+}
