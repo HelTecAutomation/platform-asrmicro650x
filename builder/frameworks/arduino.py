@@ -37,10 +37,12 @@ assert os.path.isdir(FRAMEWORK_DIR)
 
 env.Append(
     CPPDEFINES=[
-        "__%s__" % board.get("build.mcu"),
+        "__%s__" % board.get("build.mcu").upper(),
         ("CONFIG_MANUFACTURER", '\\"ASR\\"'),
         ("CONFIG_DEVICE_MODEL", '\\"%s\\"' % board.get("build.mcu")),
-        ("CONFIG_VERSION", '\\"v4.0\\"')
+        ("CONFIG_VERSION", '\\"v4.0\\"'),
+        ("CY_CORE_ID", 0),
+        "CONFIG_LORA_USE_TCXO"
     ],
 
     CCFLAGS=[
@@ -63,7 +65,6 @@ env.Append(
 
     CXXFLAGS=[
         "-fno-exceptions",
-        "-fexceptions",
         "-fno-rtti",
     ],
 
@@ -129,6 +130,34 @@ if not board.get("build.ldscript", ""):
     env.Replace(
         LDSCRIPT_PATH=board.get("build.arduino.ldscript", "cm0plusgcc.ld")
     )
+
+#
+# Configure LoRaWAN
+#
+
+lorawan_config = board.get("build.arduino.lorawan", {})
+region = lorawan_config.get("region", "AS923")
+debug_level = lorawan_config.get("debug_level", "NONE")
+
+env.Append(
+    CPPDEFINES=[
+        "REGION_%s" % region,
+        ("ACTIVE_REGION", "LORAMAC_REGION_%s" % region),
+        ("LORAWAN_CLASS", lorawan_config.get("class", "CLASS_A")),
+        ("LORAWAN_NETMODE", "true" if lorawan_config.get(
+            "netmode", "OTAA") == "OTAA" else "false"),
+        ("LORAWAN_ADR", "true" if lorawan_config.get("adr", "ON") == "ON" else "false"),
+        ("LORAWAN_UPLINKMODE", "true" if lorawan_config.get(
+            "uplinkmode", "CONFIRMED") == "CONFIRMED" else "false"),
+        ("LORAWAN_NET_RESERVE", "true" if lorawan_config.get(
+            "net_reserve", "OFF") == "ON" else "false"),
+        ("AT_SUPPORT", 1 if lorawan_config.get("at_support", "ON") == "ON" else 0),
+        ("LoraWan_RGB", 1 if lorawan_config.get(
+            "rgb", "ACTIVATE") == "ACTIVATE" else 0),
+        ("LoRaWAN_DEBUG_LEVEL", 2 if debug_level == "FREQ_AND_DIO" else (
+            1 if debug_level == "FREQ" else 0))
+    ]
+)
 
 #
 # Target: Build Core Library
