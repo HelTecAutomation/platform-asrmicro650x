@@ -1,0 +1,22 @@
+{
+  "build": {
+    "core": "asr650x",
+    "cpu": "cortex-m0plus",
+    "extra_flags": "-DCubeCell_Capsule",
+    "f_cpu": "32000000L",
+    "mcu": "asr6501",
+    "variant": "CubeCell-Capsule"
+  },
+  "frameworks": [
+    "arduino"
+  ],
+  "name": "Heltec CubeCell-Capsule (HTCC-AC0X)",
+  "upload": {
+    "maximum_ram_size": 131072,
+    "maximum_size": 131072,
+    "protocol": "serial",
+    "require_upload_port": true
+  },
+  "url": "https://heltec.org/product/htcc-ac01/",
+  "vendor": "Heltec"
+}
