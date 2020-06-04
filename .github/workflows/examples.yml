@@ -11,8 +11,8 @@ jobs:
         python-version: [2.7, 3.7]
         example:
           - "examples/arduino-adc"
-          - "examples/arduino-external-libs"
-          - "examples/arduino-lorawan-bmp180"
+          - "examples/arduino-blink"
+          - "examples/arduino-lorawan"
           - "examples/arduino-lowpower"
           - "examples/arduino-rgb"
     runs-on: ${{ matrix.os }}

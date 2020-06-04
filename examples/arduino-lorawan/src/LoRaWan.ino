@@ -1,7 +1,5 @@
 #include "LoRaWan_APP.h"
 #include "Arduino.h"
-#include <Wire.h>
-#include <BMP180.h>
 
 /*
  * set LoraWan_RGB to Active,the RGB active in loraWan
@@ -71,8 +69,6 @@ uint8_t appPort = 2;
 uint8_t confirmedNbTrials = 4;
 
 /* Prepares the payload of the frame */
-BMP085 bmp;
-
 static void prepareTxFrame( uint8_t port )
 {
 	/*appData size is LORAWAN_APP_DATA_MAX_SIZE which is defined in "commissioning.h".
@@ -82,58 +78,11 @@ static void prepareTxFrame( uint8_t port )
 	*for example, if use REGION_CN470, 
 	*the max value for different DR can be found in MaxPayloadOfDatarateCN470 refer to DataratesCN470 and BandwidthsCN470 in "RegionCN470.h".
 	*/
-  pinMode(Vext, OUTPUT);
-  digitalWrite(Vext, LOW);
-  
-  bmp.begin();
-  float temperature = bmp.readTemperature();
-  float pressure = bmp.readPressure();
-  float altitude = bmp.readAltitude();
-  float sealevelPressure = bmp.readSealevelPressure();
-  
-  // you can get a more precise measurement of altitude
-  // if you know the current sea level pressure which will
-  // vary with weather and such. If it is 1015 millibars
-  // that is equal to 101500 Pascals.
-  //    Serial.print("Real altitude = ");
-  //    Serial.print(bmp.readAltitude(101500));
-  //    Serial.println(" meters");
-  Wire.end();
-  
-  digitalWrite(Vext, HIGH);
-  uint16_t batteryVoltage = getBatteryVoltage();
-  
-  unsigned char *puc;
-  puc = (unsigned char *)(&temperature);
-  appDataSize = 14;
-  appData[0] = puc[0];
-  appData[1] = puc[1];
-  appData[2] = puc[2];
-  appData[3] = puc[3];
-  
-  puc = (unsigned char *)(&pressure);
-  appData[4] = puc[0];
-  appData[5] = puc[1];
-  appData[6] = puc[2];
-  appData[7] = puc[3];
-  
-  puc = (unsigned char *)(&altitude);
-  appData[8] = puc[0];
-  appData[9] = puc[1];
-  appData[10] = puc[2];
-  appData[11] = puc[3];
-  
-  appData[12] = (uint8_t)(batteryVoltage>>8);
-  appData[13] = (uint8_t)batteryVoltage;
-  
-  Serial.print("Temperature: ");
-  Serial.print(temperature);
-  Serial.print(" C, Pressure: ");
-  Serial.print(pressure);
-  Serial.print("Pa, ");
-  Serial.print("BatteryVoltage:");
-  Serial.println(batteryVoltage);
-  Serial.println(CONFIG_MANUFACTURER);
+    appDataSize = 4;
+    appData[0] = 0x00;
+    appData[1] = 0x01;
+    appData[2] = 0x02;
+    appData[3] = 0x03;
 }
 
 
@@ -193,4 +142,3 @@ void loop()
 		}
 	}
 }
-

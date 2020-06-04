@@ -20,7 +20,7 @@ How to build PlatformIO based project
 .. code-block:: bash
 
     # Change directory to example
-    > cd platform-asrmicro650x/examples/arduino-lorawan-bmp180
+    > cd platform-asrmicro650x/examples/arduino-lorawan
 
     # Build project
     > platformio run
