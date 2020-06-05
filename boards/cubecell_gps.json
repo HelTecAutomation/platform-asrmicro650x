@@ -1,0 +1,22 @@
+{
+  "build": {
+    "core": "asr650x",
+    "cpu": "cortex-m0plus",
+    "extra_flags": "-DCubeCell_GPS",
+    "f_cpu": "32000000L",
+    "mcu": "asr6501",
+    "variant": "CubeCell-GPS"
+  },
+  "frameworks": [
+    "arduino"
+  ],
+  "name": "Heltec CubeCell-GPS (HTCC-AB02S)",
+  "upload": {
+    "maximum_ram_size": 131072,
+    "maximum_size": 131072,
+    "protocol": "serial",
+    "require_upload_port": true
+  },
+  "url": "https://heltec.org/project/htcc-ab02s/",
+  "vendor": "Heltec"
+}
