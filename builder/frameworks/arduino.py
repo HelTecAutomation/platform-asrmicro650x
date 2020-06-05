@@ -153,7 +153,7 @@ env.Append(
             "net_reserve", "OFF") == "ON" else "false"),
         ("AT_SUPPORT", 1 if lorawan_config.get("at_support", "ON") == "ON" else 0),
         ("LoraWan_RGB", 1 if lorawan_config.get(
-            "rgb", "ACTIVATE") == "ACTIVATE" else 0),
+            "rgb", "ACTIVE") == "ACTIVE" else 0),
         ("LoRaWAN_DEBUG_LEVEL", 2 if debug_level == "FREQ_AND_DIO" else (
             1 if debug_level == "FREQ" else 0))
     ]
