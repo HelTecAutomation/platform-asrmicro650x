@@ -70,6 +70,10 @@ env.Append(
     )
 )
 
+# Allow user to override via pre:script
+if env.get("PROGNAME", "program") == "program":
+    env.Replace(PROGNAME="firmware")
+
 #
 # Target: Build executable and linkable firmware
 #
