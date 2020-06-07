@@ -4,7 +4,7 @@
     "cpu": "cortex-m0plus",
     "extra_flags": "-DCubeCell_GPS",
     "f_cpu": "32000000L",
-    "mcu": "asr6501",
+    "mcu": "asr6502",
     "variant": "CubeCell-GPS"
   },
   "frameworks": [

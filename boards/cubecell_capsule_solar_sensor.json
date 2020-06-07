@@ -4,19 +4,19 @@
     "cpu": "cortex-m0plus",
     "extra_flags": "-DCubeCell_Capsule",
     "f_cpu": "32000000L",
-    "mcu": "asr6501",
+    "mcu": "asr6502",
     "variant": "CubeCell-Capsule"
   },
   "frameworks": [
     "arduino"
   ],
-  "name": "Heltec CubeCell-Capsule (HTCC-AC01)",
+  "name": "Heltec CubeCell Capsule Solar Sensor (HTCC-AC02)",
   "upload": {
     "maximum_ram_size": 16384,
     "maximum_size": 131072,
     "protocol": "serial",
     "require_upload_port": true
   },
-  "url": "https://heltec.org/product/htcc-ac01/",
+  "url": "https://heltec.org/project/htcc-ac02/",
   "vendor": "Heltec"
 }

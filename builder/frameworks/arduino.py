@@ -37,9 +37,9 @@ assert os.path.isdir(FRAMEWORK_DIR)
 
 env.Append(
     CPPDEFINES=[
-        "__%s__" % board.get("build.mcu").upper(),
+        "__ASR6501__",
         ("CONFIG_MANUFACTURER", '\\"ASR\\"'),
-        ("CONFIG_DEVICE_MODEL", '\\"%s\\"' % board.get("build.mcu")),
+        ("CONFIG_DEVICE_MODEL", '\\"6501\\"'),
         ("CONFIG_VERSION", '\\"v4.0\\"'),
         ("CY_CORE_ID", 0),
         "CONFIG_LORA_USE_TCXO"
