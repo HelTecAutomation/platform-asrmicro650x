@@ -12,7 +12,7 @@
   ],
   "name": "Heltec CubeCell-1/2AA Node (HTCC-AB02A)",
   "upload": {
-    "maximum_ram_size": 131072,
+    "maximum_ram_size": 16384,
     "maximum_size": 131072,
     "protocol": "serial",
     "require_upload_port": true
