@@ -114,9 +114,9 @@ env.Append(
     ]
 )
 
-env.Append(
+env.Prepend(
     ASFLAGS=env.get("CCFLAGS", [])[:],
-    _LIBFLAGS=' "%s"' % os.path.join(
+    _LIBFLAGS='"%s" ' % os.path.join(
         FRAMEWORK_DIR, "cores", core, "projects", "CubeCellLib.a")
 )
 
