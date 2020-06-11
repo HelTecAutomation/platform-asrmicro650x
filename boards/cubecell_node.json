@@ -3,7 +3,7 @@
     "core": "asr650x",
     "cpu": "cortex-m0plus",
     "extra_flags": "-DCubeCell_HalfAA",
-    "f_cpu": "32000000L",
+    "f_cpu": "48000000L",
     "mcu": "asr6502",
     "variant": "CubeCell-HalfAA"
   },
