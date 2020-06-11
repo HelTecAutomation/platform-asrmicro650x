@@ -72,16 +72,15 @@ env.Append(
         "-Os",
         "-Wl,--gc-sections",
         "-mcpu=%s" % board.get("build.cpu"),
+        "-Wl,--wrap=printf",
+        "-Wl,--wrap=fflush",
+        "-Wl,--wrap=sprintf",
+        "-Wl,--wrap=snprintf",
+        "-Wl,-Map,pio.map",
         "-mthumb",
         "-mthumb-interwork",
         "-specs=nano.specs",
-        "-fno-common",
-        "-fno-builtin-printf",
-        "-fno-builtin-fflush",
-        "-fno-builtin-sprintf",
-        "-fno-builtin-snprintf",
-        "-ffat-lto-objects",
-        "-Wno-strict-aliasing"
+        "-ffat-lto-objects"
     ],
 
     CPPPATH=[
