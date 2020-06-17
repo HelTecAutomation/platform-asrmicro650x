@@ -12,9 +12,11 @@ jobs:
         example:
           - "examples/arduino-adc"
           - "examples/arduino-blink"
-          - "examples/arduino-lorawan"
           - "examples/arduino-lowpower"
           - "examples/arduino-rgb"
+          - "examples/LoRa/LoRaBasic/PingPong"
+          - "examples/LoRa/LoRaWAN/LoRaWAN"
+          - "examples/LoRa/LoRaWAN/LoRaWAN_Interrupt"
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
