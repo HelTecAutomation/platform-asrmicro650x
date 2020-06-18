@@ -18,6 +18,15 @@ from SCons.Script import (
     AlwaysBuild, Builder, COMMAND_LINE_TARGETS, Default, DefaultEnvironment)
 
 
+def AfterUpload(target, source, env):  # pylint: disable=W0613,W0621
+    upload_options = {}
+    if "BOARD" in env:
+        upload_options = env.BoardConfig().get("upload", {})
+
+    if not bool(upload_options.get("disable_flushing", False)):
+        env.FlushSerialBuffer("$UPLOAD_PORT")
+
+
 env = DefaultEnvironment()
 platform = env.PioPlatform()
 
@@ -116,7 +125,7 @@ if upload_protocol == "serial":
     upload_actions = [
         env.VerboseAction(env.AutodetectUploadPort, "Looking for upload port..."),
         env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE"),
-        env.FlushSerialBuffer("$UPLOAD_PORT")
+        env.VerboseAction(AfterUpload, "Resetting board...")
     ]
 
 elif upload_protocol == "custom":
