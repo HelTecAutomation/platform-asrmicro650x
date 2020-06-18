@@ -12,9 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from os import makedirs
-from os.path import join, isdir
-from platform import system
+from os.path import join
 
 from SCons.Script import (
     AlwaysBuild, Builder, COMMAND_LINE_TARGETS, Default, DefaultEnvironment)
