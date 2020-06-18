@@ -115,7 +115,8 @@ if upload_protocol == "serial":
     )
     upload_actions = [
         env.VerboseAction(env.AutodetectUploadPort, "Looking for upload port..."),
-        env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE")
+        env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE"),
+        env.FlushSerialBuffer("$UPLOAD_PORT")
     ]
 
 elif upload_protocol == "custom":
