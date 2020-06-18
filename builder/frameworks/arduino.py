@@ -37,9 +37,9 @@ assert os.path.isdir(FRAMEWORK_DIR)
 
 env.Append(
     CPPDEFINES=[
-        "__%s__" % board.get("build.mcu").upper(),
+        "__ASR6501__",
         ("CONFIG_MANUFACTURER", '\\"ASR\\"'),
-        ("CONFIG_DEVICE_MODEL", '\\"%s\\"' % board.get("build.mcu")),
+        ("CONFIG_DEVICE_MODEL", '\\"6501\\"'),
         ("CONFIG_VERSION", '\\"v4.0\\"'),
         ("CY_CORE_ID", 0),
         "CONFIG_LORA_USE_TCXO"
@@ -72,16 +72,15 @@ env.Append(
         "-Os",
         "-Wl,--gc-sections",
         "-mcpu=%s" % board.get("build.cpu"),
+        "-Wl,--wrap=printf",
+        "-Wl,--wrap=fflush",
+        "-Wl,--wrap=sprintf",
+        "-Wl,--wrap=snprintf",
+        "-Wl,-Map,pio.map",
         "-mthumb",
         "-mthumb-interwork",
         "-specs=nano.specs",
-        "-fno-common",
-        "-fno-builtin-printf",
-        "-fno-builtin-fflush",
-        "-fno-builtin-sprintf",
-        "-fno-builtin-snprintf",
-        "-ffat-lto-objects",
-        "-Wno-strict-aliasing"
+        "-ffat-lto-objects"
     ],
 
     CPPPATH=[
@@ -115,9 +114,9 @@ env.Append(
     ]
 )
 
-env.Append(
+env.Prepend(
     ASFLAGS=env.get("CCFLAGS", [])[:],
-    _LIBFLAGS=' "%s"' % os.path.join(
+    _LIBFLAGS='"%s" ' % os.path.join(
         FRAMEWORK_DIR, "cores", core, "projects", "CubeCellLib.a")
 )
 

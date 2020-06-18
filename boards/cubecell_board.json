@@ -3,7 +3,7 @@
     "core": "asr650x",
     "cpu": "cortex-m0plus",
     "extra_flags": "-DCubeCell_Board",
-    "f_cpu": "32000000L",
+    "f_cpu": "48000000L",
     "mcu": "asr6501",
     "variant": "CubeCell-Board"
   },
@@ -12,7 +12,7 @@
   ],
   "name": "Heltec CubeCell-Board (HTCC-AB01)",
   "upload": {
-    "maximum_ram_size": 131072,
+    "maximum_ram_size": 16384,
     "maximum_size": 131072,
     "protocol": "serial",
     "require_upload_port": true
