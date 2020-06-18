@@ -13,9 +13,11 @@
 # limitations under the License.
 
 from os.path import join
+from time import sleep
 
 from SCons.Script import (
     AlwaysBuild, Builder, COMMAND_LINE_TARGETS, Default, DefaultEnvironment)
+from serial import Serial
 
 
 def AfterUpload(target, source, env):  # pylint: disable=W0613,W0621
@@ -24,7 +26,13 @@ def AfterUpload(target, source, env):  # pylint: disable=W0613,W0621
         upload_options = env.BoardConfig().get("upload", {})
 
     if not bool(upload_options.get("disable_flushing", False)):
-        env.FlushSerialBuffer("$UPLOAD_PORT")
+        s = Serial(env.subst("$UPLOAD_PORT"))
+        s.flushInput()
+        s.setRTS(True)
+        s.setRTS(False)
+        sleep(0.1)
+        s.setRTS(True)
+        s.close()
 
 
 env = DefaultEnvironment()
