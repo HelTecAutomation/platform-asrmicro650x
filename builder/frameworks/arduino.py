@@ -37,6 +37,7 @@ assert os.path.isdir(FRAMEWORK_DIR)
 
 env.Append(
     CPPDEFINES=[
+        ("ARDUINO", 10813),
         "__ASR6501__",
         ("CONFIG_MANUFACTURER", '\\"ASR\\"'),
         ("CONFIG_DEVICE_MODEL", '\\"6501\\"'),
