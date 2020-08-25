@@ -42,7 +42,7 @@
     "framework-arduinoasrmicro650x": {
       "type": "framework",
       "owner": "platformio",
-      "version": "~1.0.0",
+      "version": "~1.1.0",
       "optional": true
     },
     "tool-cubecellelftool": {
