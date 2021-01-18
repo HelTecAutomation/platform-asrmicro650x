@@ -1,7 +1,7 @@
 {
   "name": "asrmicro650x",
-  "title": "ASR Microelectronics ASR605x",
-  "description": "ASR Microelectronics ASR605x series is highly intergrated and ultra low power SoC based on the PSoC 4000 series MCU (ARM Cortex M0+ Core) and Semtech SX1262 transceiver.",
+  "title": "ASR Microelectronics ASR650x",
+  "description": "ASR Microelectronics ASR650x series is highly intergrated and ultra low power SoC based on the PSoC 4000 series MCU (ARM Cortex M0+ Core) and Semtech SX1262 transceiver.",
   "homepage": "http://www.asrmicro.com",
   "keywords": [
       "dev-platform",
@@ -22,7 +22,7 @@
     "type": "git",
     "url": "https://github.com/HelTecAutomation/platform-asrmicro650x.git"
   },
-  "version": "1.1.1",
+  "version": "1.2.1",
   "frameworks": {
     "arduino": {
       "package": "framework-arduinoasrmicro650x",
@@ -38,7 +38,7 @@
     "framework-arduinoasrmicro650x": {
       "type": "framework",
       "owner": "heltecautomation",
-      "version": "~1.1.0",
+      "version": "~1.2.0",
       "optional": true
     },
     "tool-cubecellelftool": {
