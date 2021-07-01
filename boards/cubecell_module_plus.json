@@ -1,5 +1,10 @@
 {
   "build": {
+    "arduino": {
+      "lorawan": {
+        "rgb": "DEACTIVE"
+      }
+    },
     "core": "asr650x",
     "cpu": "cortex-m0plus",
     "extra_flags": "-DCubeCell_ModulePlus",

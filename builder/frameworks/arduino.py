@@ -38,12 +38,16 @@ assert os.path.isdir(FRAMEWORK_DIR)
 env.Append(
     CPPDEFINES=[
         ("ARDUINO", 10813),
-        "__ASR6501__",
+        "ARDUINO_ARCH_ASR650X",
+        "__%s__" % board.get("build.mcu").upper(),
+        "__asr650x__",
         ("CONFIG_MANUFACTURER", '\\"ASR\\"'),
         ("CONFIG_DEVICE_MODEL", '\\"6501\\"'),
         ("CONFIG_VERSION", '\\"v4.0\\"'),
         ("CY_CORE_ID", 0),
-        "CONFIG_LORA_USE_TCXO"
+        "CONFIG_LORA_USE_TCXO",
+        ("F_CPU", "$BOARD_F_CPU"),
+        "SOFT_SE",
     ],
 
     CCFLAGS=[
@@ -55,6 +59,7 @@ env.Append(
         "-mthumb-interwork",
         "-mapcs-frame",
         "-ffunction-sections",
+        "-fdata-sections",
         "-ffat-lto-objects",
         "-fno-common",
         "-fno-builtin-printf",
@@ -77,7 +82,6 @@ env.Append(
         "-Wl,--wrap=fflush",
         "-Wl,--wrap=sprintf",
         "-Wl,--wrap=snprintf",
-        "-Wl,-Map,pio.map",
         "-mthumb",
         "-mthumb-interwork",
         "-specs=nano.specs",
@@ -89,12 +93,11 @@ env.Append(
         os.path.join(FRAMEWORK_DIR, "cores", core, "board"),
         os.path.join(FRAMEWORK_DIR, "cores", core, "board", "src"),
         os.path.join(FRAMEWORK_DIR, "cores", core, "board", "inc"),
-        os.path.join(FRAMEWORK_DIR, "cores", core, "device", "asr6501_lrwan"),
         os.path.join(FRAMEWORK_DIR, "cores", core, "device", "sx126x"),
-        os.path.join(FRAMEWORK_DIR, "cores", core, "loramac", "mac"),
-        os.path.join(FRAMEWORK_DIR, "cores", core, "loramac", "mac", "region"),
-        os.path.join(FRAMEWORK_DIR, "cores", core, "loramac", "system"),
-        os.path.join(FRAMEWORK_DIR, "cores", core, "loramac", "system", "crypto"),
+        os.path.join(FRAMEWORK_DIR, "cores", core, "lora"),
+        os.path.join(FRAMEWORK_DIR, "cores", core, "lora", "radio"),
+        os.path.join(FRAMEWORK_DIR, "cores", core, "lora", "system"),
+        os.path.join(FRAMEWORK_DIR, "cores", core, "lora", "system", "crypto"),
         os.path.join(FRAMEWORK_DIR, "cores", core, "port"),
         os.path.join(FRAMEWORK_DIR, "cores", core, "port", "include"),
         os.path.join(FRAMEWORK_DIR, "cores", core, "projects"),
@@ -136,7 +139,7 @@ if not board.get("build.ldscript", ""):
 #
 
 lorawan_config = board.get("build.arduino.lorawan", {})
-region = lorawan_config.get("region", "AS923")
+region = lorawan_config.get("region", "US915")
 debug_level = lorawan_config.get("debug_level", "NONE")
 
 env.Append(
@@ -152,6 +155,7 @@ env.Append(
         ("LORAWAN_NET_RESERVE", "true" if lorawan_config.get(
             "net_reserve", "OFF") == "ON" else "false"),
         ("AT_SUPPORT", 1 if lorawan_config.get("at_support", "ON") == "ON" else 0),
+        ("LORAWAN_DEVEUI_AUTO", 0 if lorawan_config.get("deveui", "CUSTOM") == "CUSTOM" else 1),
         ("LoraWan_RGB", 1 if lorawan_config.get(
             "rgb", "ACTIVE") == "ACTIVE" else 0),
         ("LoRaWAN_DEBUG_LEVEL", 2 if debug_level == "FREQ_AND_DIO" else (
@@ -181,11 +185,11 @@ if "build.variant" in env.BoardConfig():
 
 libs.append(env.BuildLibrary(
     os.path.join("$BUILD_DIR", "FrameworkArduino"),
-    os.path.join(FRAMEWORK_DIR, "cores"),
+    os.path.join(FRAMEWORK_DIR, "cores", core),
     src_filter=[
         "+<*>",
-        "-<%s/projects/PSoC4/CyBootAsmIar.s>" % core,
-        "-<%s/projects/PSoC4/CyBootAsmRv.s>" % core
+        "-<projects/PSoC4/CyBootAsmIar.s>",
+        "-<projects/PSoC4/CyBootAsmRv.s>"
     ]
 ))
 
