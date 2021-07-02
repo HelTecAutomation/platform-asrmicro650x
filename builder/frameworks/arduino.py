@@ -95,7 +95,6 @@ env.Append(
         os.path.join(FRAMEWORK_DIR, "cores", core, "board", "inc"),
         os.path.join(FRAMEWORK_DIR, "cores", core, "device", "sx126x"),
         os.path.join(FRAMEWORK_DIR, "cores", core, "lora"),
-        os.path.join(FRAMEWORK_DIR, "cores", core, "lora", "radio"),
         os.path.join(FRAMEWORK_DIR, "cores", core, "lora", "system"),
         os.path.join(FRAMEWORK_DIR, "cores", core, "lora", "system", "crypto"),
         os.path.join(FRAMEWORK_DIR, "cores", core, "port"),
