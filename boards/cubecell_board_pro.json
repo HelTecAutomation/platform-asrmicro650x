@@ -15,7 +15,7 @@
   "frameworks": [
     "arduino"
   ],
-  "name": "Heltec CubeCell-Board PRO（HTCC-AB03）",
+  "name": "Heltec CubeCell-Board PRO (HTCC-AB03)",
   "upload": {
     "maximum_ram_size": 229376,
     "maximum_size": 229376,
