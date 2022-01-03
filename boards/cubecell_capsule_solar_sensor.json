@@ -4,7 +4,7 @@
     "cpu": "cortex-m0plus",
     "extra_flags": "-DCubeCell_Capsule",
     "f_cpu": "48000000L",
-    "mcu": "asr6502",
+    "mcu": "asr6051",
     "variant": "CubeCell-Capsule"
   },
   "frameworks": [
