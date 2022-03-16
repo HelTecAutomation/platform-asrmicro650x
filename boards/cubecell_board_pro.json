@@ -1,0 +1,27 @@
+{
+  "build": {
+    "arduino": {
+      "lorawan": {
+        "class": "CLASS_B"
+      }
+    },
+    "core": "asr6601",
+    "cpu": "cortex-m4",
+    "extra_flags": "-DCubeCell_BoardPRO",
+    "f_cpu": "48000000L",
+    "mcu": "asr6601",
+    "variant": "CubeCell-Board-PRO"
+  },
+  "frameworks": [
+    "arduino"
+  ],
+  "name": "Heltec CubeCell-Board PRO (HTCC-AB03)",
+  "upload": {
+    "maximum_ram_size": 229376,
+    "maximum_size": 229376,
+    "protocol": "serial",
+    "require_upload_port": true
+  },
+  "url": "https://heltec.org/proudct_center",
+  "vendor": "Heltec"
+}
