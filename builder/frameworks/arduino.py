@@ -190,6 +190,7 @@ env.Append(
             0 if lorawan_config.get("deveui", "CUSTOM") == "CUSTOM" else 1,
         ),
         ("LoraWan_RGB", 1 if lorawan_config.get("rgb", "ACTIVE") == "ACTIVE" else 0),
+        ("LORAWAN_PREAMBLE_LENGTH", lorawan_config.get("preamble_length", 8)),
         (
             "LoRaWAN_DEBUG_LEVEL",
             2 if debug_level == "FREQ_AND_DIO" else (1 if debug_level == "FREQ" else 0),
