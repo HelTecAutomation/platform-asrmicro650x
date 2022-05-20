@@ -40,6 +40,8 @@ CORE_DIR = os.path.join(FRAMEWORK_DIR, "cores", core)
 assert os.path.isdir(FRAMEWORK_DIR)
 
 env.Append(
+    ASPPFLAGS=["-x", "assembler-with-cpp"],
+
     CPPDEFINES=[
         ("ARDUINO", 10815),
         "ARDUINO_ARCH_%s" % arch.upper(),
@@ -94,7 +96,6 @@ env.Append(
 )
 
 env.Prepend(
-    ASFLAGS=env.get("CCFLAGS", [])[:],
     _LIBFLAGS='"%s" '
     % (
         os.path.join(CORE_DIR, "asr6601.a")
@@ -232,3 +233,7 @@ libs.append(
 )
 
 env.Prepend(LIBS=libs)
+
+# Duplicate preprocessor flags to the assembler
+# for '.S', '.spp', '.SPP', '.sx' source files
+env.Append(ASPPFLAGS=env.get("CCFLAGS", []))
