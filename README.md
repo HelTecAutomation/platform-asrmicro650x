@@ -1,4 +1,4 @@
-# ASR Microelectronics ASR605x (ASR6501, ASR6502): development platform for [PlatformIO](http://platformio.org)
+# ASR Microelectronics ASR605x (ASR6501, ASR6502): development platform for [PlatformIO](https://platformio.org)
 
 [![Build Status](https://github.com/HelTecAutomation/platform-asrmicro650x/workflows/Examples/badge.svg)](https://github.com/HelTecAutomation/platform-asrmicro650x/actions)
 
@@ -9,7 +9,7 @@ ASR Microelectronics ASR605x series is highly integrated and ultra low power SoC
 
 # Usage
 
-1. [Install PlatformIO](http://platformio.org)
+1. [Install PlatformIO](https://platformio.org)
 2. Create PlatformIO project and configure a platform option in [platformio.ini](https://docs.platformio.org/page/projectconf.html) file:
 
 ## Stable version

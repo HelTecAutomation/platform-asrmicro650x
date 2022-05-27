@@ -39,8 +39,18 @@ FRAMEWORK_DIR = platform.get_package_dir("framework-arduinoasrmicro")
 CORE_DIR = os.path.join(FRAMEWORK_DIR, "cores", core)
 assert os.path.isdir(FRAMEWORK_DIR)
 
+machine_flags = [
+    "-mcpu=%s" % board.get("build.cpu"),
+    "-mthumb",
+    "-mthumb-interwork",
+    "-mapcs-frame",
+]
+
 env.Append(
-    ASPPFLAGS=["-x", "assembler-with-cpp"],
+    ASFLAGS=machine_flags,
+    ASPPFLAGS=[
+        "-x", "assembler-with-cpp",
+    ],
 
     CPPDEFINES=[
         ("ARDUINO", 10815),
@@ -55,14 +65,10 @@ env.Append(
         ("F_CPU", "$BOARD_F_CPU"),
         "SOFT_SE",
     ],
-    CCFLAGS=[
+    CCFLAGS=machine_flags + [
         "-w",
         "-Wall",
         "-Os",
-        "-mcpu=%s" % board.get("build.cpu"),
-        "-mthumb",
-        "-mthumb-interwork",
-        "-mapcs-frame",
         "-ffunction-sections",
         "-fdata-sections",
         "-ffat-lto-objects",
@@ -77,16 +83,13 @@ env.Append(
         "-fno-exceptions",
         "-fno-rtti",
     ],
-    LINKFLAGS=[
+    LINKFLAGS=machine_flags + [
         "-Os",
         "-Wl,--gc-sections",
-        "-mcpu=%s" % board.get("build.cpu"),
         "-Wl,--wrap=printf",
         "-Wl,--wrap=fflush",
         "-Wl,--wrap=sprintf",
         "-Wl,--wrap=snprintf",
-        "-mthumb",
-        "-mthumb-interwork",
         "-specs=nano.specs",
         "-specs=nosys.specs",
         "-ffat-lto-objects",
@@ -233,7 +236,3 @@ libs.append(
 )
 
 env.Prepend(LIBS=libs)
-
-# Duplicate preprocessor flags to the assembler
-# for '.S', '.spp', '.SPP', '.sx' source files
-env.Append(ASPPFLAGS=env.get("CCFLAGS", []))
