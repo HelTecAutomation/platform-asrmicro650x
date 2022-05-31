@@ -108,6 +108,7 @@ else:
             join("$BUILD_DIR", "${PROGNAME}"), [target_elf, target_hex]
         )
     )
+    env.Depends(target_firm, "checkprogsize")
 
 AlwaysBuild(env.Alias("nobuild", target_firm))
 target_buildprog = env.Alias("buildprog", target_firm, target_firm)
