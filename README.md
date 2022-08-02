@@ -34,7 +34,7 @@ board = ...
 
 ## LoRaWAN
 
-LoRaWAN protocol can be configured in :ref:`projectconf` using the following syntax
+LoRaWAN protocol can be configured in https://docs.platformio.org/en/latest/projectconf/index.html using the following syntax
 ``board_build.arduino.lorawan.*`` where ``*`` is an option from the following list:
 
 | Option      | Description | Possible values | Default |
