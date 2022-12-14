@@ -1,0 +1,22 @@
+{
+  "build": {
+    "core": "asr650x",
+    "cpu": "cortex-m0plus",
+    "extra_flags": "-DCubeCell_Board_V2",
+    "f_cpu": "48000000L",
+    "mcu": "asr6501",
+    "variant": "CubeCell-Board-V2"
+  },
+  "frameworks": [
+    "arduino"
+  ],
+  "name": "Heltec CubeCell-Board-V2(HTCC-AB01-V2)",
+  "upload": {
+    "maximum_ram_size": 16384,
+    "maximum_size": 131072,
+    "protocol": "serial",
+    "require_upload_port": true
+  },
+  "url": "https://heltec.org/project/htcc-ab01-v2/",
+  "vendor": "Heltec"
+}
