@@ -22,6 +22,16 @@ from SCons.Script import (
     DefaultEnvironment,
 )
 
+print("""
+Warning! This development platform is deprecated and won't receive any further updates.
+Please use the `heltec-cubecell` development platform as the drop-in replacement:
+
+[env:yourenv]
+platform = heltec-cubecell
+framework = arduino
+board = your_board_id
+
+""")
 
 env = DefaultEnvironment()
 platform = env.PioPlatform()
