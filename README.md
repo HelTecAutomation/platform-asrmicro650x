@@ -1,5 +1,16 @@
 # ASR Microelectronics ASR605x (ASR6501, ASR6502): development platform for [PlatformIO](https://platformio.org)
 
+### This development platform is deprecated and won't receive any further updates.
+
+Please use the [heltec-cubecell](https://github.com/HelTecAutomation/platform-heltec-cubecell) development platform as the drop-in replacement:
+
+```ini
+[env:yourenv]
+platform = heltec-cubecell
+framework = arduino
+board = your_board_id
+```
+
 [![Build Status](https://github.com/HelTecAutomation/platform-asrmicro650x/workflows/Examples/badge.svg)](https://github.com/HelTecAutomation/platform-asrmicro650x/actions)
 
 ASR Microelectronics ASR605x series is highly integrated and ultra low power SoC based on the PSoC 4000 series MCU (ARM Cortex M0+ Core) and Semtech SX1262 transceiver.
